@@ -1,0 +1,28 @@
+class Solution {
+    public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
+        // Dummy node to form the new list
+        ListNode dummy = new ListNode(-1);
+        ListNode current = dummy;
+
+        // Traverse both lists
+        while (list1 != null && list2 != null) {
+            if (list1.val <= list2.val) {
+                current.next = list1; // Add list1 node to the merged list
+                list1 = list1.next;  // Move to the next node in list1
+            } else {
+                current.next = list2; // Add list2 node to the merged list
+                list2 = list2.next;  // Move to the next node in list2
+            }
+            current = current.next; // Move to the next node in the merged list
+        }
+
+        // Attach the remaining nodes (if any)
+        if (list1 != null) {
+            current.next = list1;
+        } else if (list2 != null) {
+            current.next = list2;
+        }
+
+        return dummy.next; // Return the head of the merged list
+    }
+}
